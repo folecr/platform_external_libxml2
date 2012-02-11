@@ -51,27 +51,47 @@ common_SRC_FILES := \
 common_C_INCLUDES += \
 	$(LOCAL_PATH)/include
 
-# For the device
-# =====================================================
+# # For the device
+# # =====================================================
+
+# include $(CLEAR_VARS)
+
+# LOCAL_SRC_FILES := $(common_SRC_FILES)
+# LOCAL_C_INCLUDES += $(common_C_INCLUDES)
+# LOCAL_SHARED_LIBRARIES += $(common_SHARED_LIBRARIES)
+# LOCAL_CFLAGS += -fvisibility=hidden
+
+# LOCAL_MODULE:= libxml2
+
+# include $(BUILD_STATIC_LIBRARY)
+
+
+# # For the host
+# # ========================================================
+
+# include $(CLEAR_VARS)
+# LOCAL_SRC_FILES := $(common_SRC_FILES)
+# LOCAL_C_INCLUDES += $(common_C_INCLUDES)
+# LOCAL_SHARED_LIBRARIES += $(common_SHARED_LIBRARIES)
+# LOCAL_MODULE:= libxml2
+# include $(BUILD_HOST_STATIC_LIBRARY)
+
+# ------------------------------------------------------------------
+# Add static library for Cocos
+# ------------------------------------------------------------------
 
 include $(CLEAR_VARS)
 
-LOCAL_SRC_FILES := $(common_SRC_FILES)
-LOCAL_C_INCLUDES += $(common_C_INCLUDES)
-LOCAL_SHARED_LIBRARIES += $(common_SHARED_LIBRARIES)
-LOCAL_CFLAGS += -fvisibility=hidden
+LOCAL_MODULE := cocos_libxml2_static
 
-LOCAL_MODULE:= libxml2
+LOCAL_MODULE_FILENAME := libxml2
+
+LOCAL_SRC_FILES := $(common_SRC_FILES)
+
+LOCAL_C_INCLUDES := $(common_C_INCLUDES)
+
+LOCAL_EXPORT_C_INCLUDES := $(common_C_INCLUDES)
+
+LOCAL_CFLAGS := -fvisibility=hidden
 
 include $(BUILD_STATIC_LIBRARY)
-
-
-# For the host
-# ========================================================
-
-include $(CLEAR_VARS)
-LOCAL_SRC_FILES := $(common_SRC_FILES)
-LOCAL_C_INCLUDES += $(common_C_INCLUDES)
-LOCAL_SHARED_LIBRARIES += $(common_SHARED_LIBRARIES)
-LOCAL_MODULE:= libxml2
-include $(BUILD_HOST_STATIC_LIBRARY)
