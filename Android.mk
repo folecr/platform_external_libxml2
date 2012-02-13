@@ -67,4 +67,6 @@ LOCAL_C_INCLUDES := $(common_C_INCLUDES)
 
 LOCAL_EXPORT_C_INCLUDES := $(common_C_INCLUDES)
 
+LOCAL_CFLAGS := -fvisibility=hidden
+
 include $(BUILD_STATIC_LIBRARY)
